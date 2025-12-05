@@ -36,12 +36,10 @@ export class ClienteService{
         return await this.clienteRepository.save(cliente);
     }
 
-    async update(cliente: Cliente): Promise<Cliente>{
-        let buscarCliente: Cliente = await this.findById(cliente.id_cliente);
-        if(!buscarCliente){
-            throw new HttpException('Cliente não encontrado', HttpStatus.NOT_FOUND);
-        }
-        return await this.clienteRepository.save(cliente);
+    async update(cliente: Cliente): Promise<Cliente> {
+        const buscarCliente = await this.findById(cliente.id_cliente);
+        const clienteAtualizado = this.clienteRepository.merge(buscarCliente, cliente);
+        return await this.clienteRepository.save(clienteAtualizado);
     }
 
     async delete(id_cliente: number): Promise<DeleteResult>{
