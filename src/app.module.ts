@@ -8,7 +8,7 @@ import { ClienteModule } from './cliente/cliente.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port:  3306,
+      port:  3310,
       username: 'root',
       password: 'root', // Mudar a senha do banco de dados
       database: 'db_crm',
